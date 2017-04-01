@@ -8,8 +8,8 @@
 
 import Foundation
 
-public extension Dictionary where Key: StringLiteralConvertible {
-    public func read(param: String) -> Any? {
+public extension Dictionary where Key: ExpressibleByStringLiteral {
+    public func read(_ param: String) -> Any? {
         var paramParts = param.components(separatedBy: ".")
         var currentElement:[AnyHashable : Any] = self
         for i in 0..<paramParts.count {
@@ -26,15 +26,15 @@ public extension Dictionary where Key: StringLiteralConvertible {
         return nil
     }
     
-    public func readString(param: String) -> String? {
-        return self.read(param: param) as? String
+    public func readString(_ param: String) -> String? {
+        return self.read(param) as? String
     }
     
-    public func readInt(dictionary:[AnyHashable:Any], param: String) -> Int? {
-        return self.read(param: param) as? Int
+    public func readInt(_ param: String) -> Int? {
+        return self.read(param) as? Int
     }
     
-    public func readBool(dictionary:[AnyHashable:Any], param: String) -> Bool? {
-        return self.read( param: param) as? Bool
+    public func readBool(_ param: String) -> Bool? {
+        return self.read(param) as? Bool
     }
 }
