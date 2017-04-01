@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'DictionaryUtils_Example' do
+  pod 'DictionaryUtils', :path => '../'
+
+  target 'DictionaryUtils_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
