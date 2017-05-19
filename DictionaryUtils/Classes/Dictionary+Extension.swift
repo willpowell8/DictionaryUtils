@@ -82,10 +82,13 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
                 }
             }else{
                 if i < paramParts.count - 1 {
-                    guard let childElement = currentElement[part] as! Dictionary<AnyHashable, Any>? else {
-                        return nil
+                    guard let childElement = currentElement[part] as? Dictionary<AnyHashable, Any>? else {
+                        throw DictionaryError.invalidQueryString
                     }
-                    currentElement = childElement
+                    guard let c = childElement else {
+                        throw DictionaryError.invalidQueryString
+                    }
+                    currentElement = c
                 }else{
                     return currentElement[part]
                 }
