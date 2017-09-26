@@ -42,7 +42,6 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
                             }
                         }else{
                             // is query string
-                            print("Query String")
                             var queryParams = [String:AnyHashable]()
                             let splitParameters = finalSegment.components(separatedBy: ",")
                             splitParameters.forEach({ (item) in
