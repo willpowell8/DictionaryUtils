@@ -9,6 +9,7 @@
 import Foundation
 
 public enum DictionaryError:Error {
+    case noarrayFound
     case invalidQueryString
     case noMatchInArray
     case canNotRouteThroughArrayWithMultipleResults
@@ -25,6 +26,9 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
                 if parts.count == 2 {
                     guard let ary = currentElement[parts[0]] as? [[AnyHashable:Any]] else {
                         return nil
+                    }
+                    if ary.count == 0 {
+                        throw DictionaryError.noarrayFound
                     }
                     let finalSegmentParts = parts[1].components(separatedBy: "]")
                     if finalSegmentParts.count == 2, finalSegmentParts[1] == "" {
