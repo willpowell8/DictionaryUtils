@@ -11,13 +11,16 @@ import Foundation
 public enum DictionaryError:Error {
     case noarrayFound
     case invalidQueryString
-    case invalidQueryStringMissingEquals
+    case invalidQueryEmptyParam
     case noMatchInArray
     case canNotRouteThroughArrayWithMultipleResults
 }
 
 public extension Dictionary where Key: ExpressibleByStringLiteral {
     public func read(_ param: String) throws -> Any?   {
+        guard param.characters.count > 0 else{
+            throw DictionaryError.invalidQueryEmptyParam
+        }
         var paramParts = param.components(separatedBy: ".")
         var currentElement:[AnyHashable : Any] = self
         for i in 0..<paramParts.count {
