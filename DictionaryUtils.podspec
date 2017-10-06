@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DictionaryUtils'
-  s.version          = '0.4.4'
+  s.version          = '0.4.5'
   s.summary          = 'Dictionary utilities that make life easier to reference the tree'
 
 # This description is used to generate tags and improve search results.

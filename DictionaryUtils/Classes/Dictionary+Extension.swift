@@ -11,6 +11,7 @@ import Foundation
 public enum DictionaryError:Error {
     case noarrayFound
     case invalidQueryString
+    case invalidQueryStringMissingEquals
     case noMatchInArray
     case canNotRouteThroughArrayWithMultipleResults
 }
@@ -35,23 +36,30 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
                         let finalSegment = finalSegmentParts[0]
                         if let finalSegmentInt = Int(finalSegment), finalSegmentInt>=0 {
                             // is integer in parameter
-                            if i < paramParts.count - 1 {
+                            if i>=0, i < paramParts.count - 1 {
                                 currentElement = ary[finalSegmentInt]
                             }else{
-                                return currentElement[finalSegmentInt]
+                                return ary[finalSegmentInt]
                             }
                         }else{
                             // is query string
                             var queryParams = [String:AnyHashable]()
                             let splitParameters = finalSegment.components(separatedBy: ",")
                             splitParameters.forEach({ (item) in
-                                let itemParts = item.components(separatedBy: "=")
-                                if let itemPartIsInt = Int(itemParts[1]){
-                                    queryParams[itemParts[0]] = itemPartIsInt
-                                }else{
-                                    queryParams[itemParts[0]] = itemParts[1]
+                                if item.contains("=") {
+                                    let itemParts = item.components(separatedBy: "=")
+                                    if itemParts.count == 2 {
+                                        if let itemPartIsInt = Int(itemParts[1]){
+                                            queryParams[itemParts[0]] = itemPartIsInt
+                                        }else{
+                                            queryParams[itemParts[0]] = itemParts[1]
+                                        }
+                                    }else{
+                                        // incorrect number of parts
+                                        print("Dictionary Utils: Incorrect parts in \(item)")
+                                        return
+                                    }
                                 }
-                                
                             })
                             let output = ary.filter({ (item) -> Bool in
                                 var isValid = true

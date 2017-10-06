@@ -18,8 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let data = ["TEST":["text":[["value":1,"hello":"WELCOME"],["value":0,"hello":"WELCOME2"]]]]
         do {
-            let output = try data.readString("TEST.text[value=0].hello")
-            print(output!)
+            if let output = try data.readString("TEST.text[value=0].hello") {
+                print(output)
+            }
+            let component = try data.read("TEST.text[0]")
+            if let output2 = try data.read("TEST.text[0].hello") {
+                print(output2)
+            }
         }catch{
             print("ERROR")
         }
