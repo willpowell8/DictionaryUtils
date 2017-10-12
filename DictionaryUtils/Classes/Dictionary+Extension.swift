@@ -18,7 +18,7 @@ public enum DictionaryError:Error {
 
 public extension Dictionary where Key: ExpressibleByStringLiteral {
     public func read(_ param: String) throws -> Any?   {
-        guard param.characters.count > 0 else{
+        guard param.count > 0 else{
             throw DictionaryError.invalidQueryEmptyParam
         }
         var paramParts = param.components(separatedBy: ".")
