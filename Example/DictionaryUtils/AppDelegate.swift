@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let output = try data.readString("TEST.text[value=0].hello") {
                 print(output)
             }
-            let component = try data.read("TEST.text[0]")
+            //let component = try data.read("TEST.text[0]")
             if let output2 = try data.read("TEST.text[0].hello") {
                 print(output2)
             }
