@@ -1,3 +1,4 @@
+![alt text](https://raw.githubusercontent.com/willpowell8/DictionaryUtils/master/page/dictionaryUtils.png "iOS Dictionary Utils")
 # DictionaryUtils
 
 Dictionary utils allows you to use JSON like referencing to travers an object.
