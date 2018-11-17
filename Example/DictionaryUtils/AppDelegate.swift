@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("ERROR")
         }
         
-        if let output = data.tryRead("TEST.text[value=0].hello") {
+        if let output = data.evaluate("TEST.text[value=0].hello") {
             print(output)
         }
         // Override point for customization after application launch.

@@ -117,7 +117,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
         return nil
     }
     
-    public func tryRead(_ param: String) -> Any?   {
+    public func evaluate(_ param: String) -> Any?   {
         do{
             return try self.read(param)
         }catch{
