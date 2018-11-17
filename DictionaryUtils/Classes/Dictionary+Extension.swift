@@ -17,6 +17,8 @@ public enum DictionaryError:Error {
 }
 
 public extension Dictionary where Key: ExpressibleByStringLiteral {
+    
+    
     public func read(_ param: String) throws -> Any?   {
         guard !param.isEmpty else{
             throw DictionaryError.invalidQueryEmptyParam
@@ -111,6 +113,15 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
                     return currentElement[part]
                 }
             }
+        }
+        return nil
+    }
+    
+    public func tryRead(_ param: String) -> Any?   {
+        do{
+            return try self.read(param)
+        }catch{
+            
         }
         return nil
     }

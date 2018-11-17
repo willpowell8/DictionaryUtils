@@ -14,8 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         let data = ["TEST":["text":[["value":1,"hello":"WELCOME"],["value":0,"hello":"WELCOME2"]]]]
         do {
             if let output = try data.readString("TEST.text[value=0].hello") {
@@ -27,6 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }catch{
             print("ERROR")
+        }
+        
+        if let output = data.tryRead("TEST.text[value=0].hello") {
+            print(output)
         }
         // Override point for customization after application launch.
         return true
