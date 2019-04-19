@@ -19,7 +19,7 @@ public enum DictionaryError:Error {
 public extension Dictionary where Key: ExpressibleByStringLiteral {
     
     
-    public func read(_ param: String) throws -> Any?   {
+    func read(_ param: String) throws -> Any?   {
         guard !param.isEmpty else{
             throw DictionaryError.invalidQueryEmptyParam
         }
@@ -117,7 +117,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
         return nil
     }
     
-    public func evaluate(_ param: String) -> Any?   {
+    func evaluate(_ param: String) -> Any?   {
         do{
             return try self.read(param)
         }catch{
@@ -126,7 +126,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
         return nil
     }
     
-    public func readString(_ param: String) throws -> String? {
+    func readString(_ param: String) throws -> String? {
         do{
             return try self.read(param) as? String
         }catch{
@@ -134,7 +134,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
         }
     }
     
-    public func readInt(_ param: String) throws -> Int? {
+    func readInt(_ param: String) throws -> Int? {
         do{
             return try self.read(param) as? Int
         }catch{
@@ -142,7 +142,7 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
         }
     }
     
-    public func readBool(_ param: String) throws -> Bool? {
+    func readBool(_ param: String) throws -> Bool? {
         do{
             return try self.read(param) as? Bool
         }catch{
