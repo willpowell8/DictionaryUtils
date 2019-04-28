@@ -18,7 +18,6 @@ public enum DictionaryError:Error {
 
 public extension Dictionary where Key: ExpressibleByStringLiteral {
     
-    
     func read(_ param: String) throws -> Any?   {
         guard !param.isEmpty else{
             throw DictionaryError.invalidQueryEmptyParam
@@ -42,9 +41,16 @@ public extension Dictionary where Key: ExpressibleByStringLiteral {
                         if let finalSegmentInt = Int(finalSegment), finalSegmentInt>=0 {
                             // is integer in parameter
                             if i>=0, i < paramParts.count - 1 {
-                                currentElement = ary[finalSegmentInt]
+                                if ary.count > finalSegmentInt {
+                                    currentElement = ary[finalSegmentInt]
+                                }else{
+                                    return nil
+                                }
                             }else{
-                                return ary[finalSegmentInt]
+                                if ary.count > finalSegmentInt {
+                                    return ary[finalSegmentInt]
+                                }
+                                return nil
                             }
                         }else{
                             // is query string
