@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DictionaryUtils'
-  s.version          = '0.5.2'
+  s.version          = '0.5.3'
   s.summary          = 'Dictionary utilities that make life easier to reference the tree'
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ Some of the functions to be able to get keys where they are nested in a comporab
 
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
-  s.osx.deployment_target = '10.7'
+  s.osx.deployment_target = '10.9'
   s.swift_version = '5.0'
 
   s.source_files = 'DictionaryUtils/Classes/**/*'
